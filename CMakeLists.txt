@@ -33,12 +33,14 @@ add_library(pbc_sig
 sig/sig.c sig/hash.c sig/bbs.c
 )
 
+if(test)
 foreach(bin
     test/bb test/bls test/ibs test/bbs
 )
     add_executable(${bin} ${bin}.c)
     target_link_libraries(${bin} ${PBC_LIBRARY} pbc_sig ${GMP_LIBRARY})
 endforeach(bin)
+endif(test)
 
 if(debug)
 set(optflags "-O0 -g")
